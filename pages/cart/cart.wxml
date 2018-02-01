@@ -1,11 +1,76 @@
 <view>
-  <myHeadCart></myHeadCart>
+  <myHeadCart innerText="{{true}}"></myHeadCart>
   <view class='main'>
     <!-- 空购物车页面 -->
     <view class="cart-empty-wrap" v-show="(carts.length === 0)">
       <view class="cart-dingwei"><image src='../../images/dingwei.png'></image></view>
       <text>亲，购物车空空的耶~</text>
       <navigator class="guangguang">去逛逛</navigator>
+    </view>
+    <!--用户信息  -->
+    <view class='user-news'>
+      <view class='tr'>
+        <text class='th'>收<text class='text-hidden'>h</text>货<text class='text-hidden'>h</text>人</text>
+        <text class='td'>周小周 <text class='text-hidden'>h</text>女士</text>
+      </view>
+      <view class='tr'>
+        <text class='th'>电<text class='text-hidden'>隐藏</text>话</text>
+        <text class='td'>13545288555</text>
+        <text class='amend'>修改</text>
+      </view> 
+      <view class='tr'>
+        <text class='th'>修改地址</text>
+        <text class='td'>湖北荆州古城</text>
+      </view>
+    </view>
+    <!--用户信息下面的内容  -->
+    <view class='cart-group-wrap'>
+      <!--闪送超市  -->
+      <view class='cart-market-wrap'>闪送超市</view>
+      <text class="cart-addBtn">凑单专区</text>
+      <text class="qisong">￥0起送，22:00前满￥30免运费，22:00后满￥50main运费</text>
+      <!--收货时间  -->
+      <view class="section">
+        <picker mode="multiSelector" bindcolumnchange="changeTimes" value="{{multiIndex}}" range="{{multiArray}}">
+          <view class="picker">
+            收货时间：<text class='receive'>{{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}</text>
+            <text class="yuding"><text class='text-hidden'>隐藏</text>可预订</text>
+          </view>
+        </picker>
+      </view>
+      <!--收货备注  -->
+      <view class="cart-receive-remark">
+        <text decode>收货备注&nbsp;&nbsp;</text>
+        <input class="remark-input" type="text" maxlength="100" placeholder="可输入100字以内特殊要求内容"/>
+      </view>
+    </view>
+    <!-- 购物车中的商品列表 -->
+    <view class="group-item-wrap">
+      <view class="group-item">
+        <text class="group-item-checkbox active" decode>&nbsp;</text>
+        <navigator class="group-item-img">
+          <image src='../../images/product-list-demo.jpg'></image>
+        </navigator>
+        <view class="products-list-div">
+          <view class="products-list-title">
+          <text class='p'>强颗粒</text>
+          </view>
+          <view class="products-list-content">
+            <text class='p2'>￥12.00</text>
+            <view class="btn-wrap">
+              <text>-</text>
+              <text class="products-list-num">0</text>
+              <text>+</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--总价  -->
+    <view class="total-wrap">
+      <text class="all-total all-total-true">全选</text>共 <text decode>&nbsp;</text>:
+      <text class="total-price">￥666.00</text>
+      <text class="total-btn">选好了</text>
     </view>
   </view>
 </view> 

@@ -96,13 +96,13 @@
     transform: rotate(-180deg)      
 }
 .main-right-title-li:nth-child(2){
-       margin-left: -34rpx; 
-    }
+  margin-left: -34rpx; 
+}
 .main-right-title-li:nth-child(2)::before{
-      content: '|';
-      color: #ddd;
-      padding-right: 60rpx;
-    }
+  content: '|';
+  color: #ddd;
+  padding-right: 60rpx;
+}
 .main-right-title-text{
   position: absolute;
   top: 82rpx;
