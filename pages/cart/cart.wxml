@@ -1,0 +1,11 @@
+<view>
+  <myHeadCart></myHeadCart>
+  <view class='main'>
+    <!-- 空购物车页面 -->
+    <view class="cart-empty-wrap" v-show="(carts.length === 0)">
+      <view class="cart-dingwei"><image src='../../images/dingwei.png'></image></view>
+      <text>亲，购物车空空的耶~</text>
+      <navigator class="guangguang">去逛逛</navigator>
+    </view>
+  </view>
+</view> 

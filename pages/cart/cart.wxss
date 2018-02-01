@@ -1,0 +1,34 @@
+.main{
+  bottom: 0;
+  font-size: 30rpx;
+}
+.cart-empty-wrap {
+  text-align: center;
+  padding-top: 20%;
+  font-size: 28rpx;
+  color: #999;
+  position: relative;
+}
+.cart-dingwei{
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 80rpx;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+}
+.cart-dingwei image{
+  width: 100%;
+  height: 100%;
+  border-radius: 80rpx;
+}
+.cart-empty-wrap text{
+  margin: 24rpx 0;
+}
+.guangguang{
+  border: 1px solid lightgray;
+  border-radius: 6rpx;
+  padding: 8rpx 60rpx;
+  position: absolute;
+  bottom: -110rpx;
+  left: 267rpx;
+}

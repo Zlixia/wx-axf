@@ -1,0 +1,58 @@
+<!--pages/market/market.wxml-->
+<view>
+  <myHead></myHead>
+  <view class="main">
+        <!-- 主体左边的列表 -->
+    <view class="main-left-wrap">
+      <view class="main-left-ul">
+        <view class='main-left-li' wx:for="{{categories}}" wx:key="{{item.id}}" bindtap="changeActiveCategory" data-index="{{index}}">
+          <text class='{{activeCategory===index?"active":""}}'></text>{{item.name}}        </view>
+      </view>
+    </view>
+        <!-- 主体右边的部分  -->
+    <view class='main-right-wrap'>
+        <!--右边标题部分  -->
+      <view class='main-right-title-wrap'>
+        <view class='main-right-title'>
+          <view class='{{allCategories? "main-right-title-li active":"main-right-title-li"}}' bindtap='changeAllCategories'>{{activeCid}}<text></text></view>
+          <view class='{{sortSh? "main-right-title-li active":"main-right-title-li"}}' bindtap='changeSortSh'>{{sortType}}<text></text></view>
+        </view>
+      </view>
+          <!-- 全部分类的内容 -->
+      <view class='main-right-title-text' hidden='{{!allCategories}}'>
+        <view class='{{activeCid == "全部分类"? "title-text-li active": "title-text-li"}}' bindtap='changeActiveCid' data-name="全部分类" data-index="all">全部分类</view>
+        <view class='{{activeCid == item.name? "title-text-li active": "title-text-li"}}' bindtap='changeActiveCid' data-name="{{item.name}}" data-index="{{index}}" wx:for="{{categories[activeCategory].cids}}" wx:key="{{item.id}}">{{item.name}}</view>
+      </view>   
+          <!-- 综合排序的内容 -->
+       <view class='main-right-title-text' hidden='{{!sortSh}}'>
+        <view class='{{sortType == item? "title-text-li active": "title-text-li"}}' wx:for="{{sortList}}" wx:key="{{item.id}}" bindtap='changeSortType' data-item="{{item}}">{{item}}</view>
+      </view> 
+          <!--蒙版  -->
+      <view class='mengban' hidden='{{mengbanBol}}'></view>
+        <!--商品展示区  -->
+        <view class="products-wrap">
+          <view class="products-lists">
+            <view class="products-list" wx:for="{{activeProducts}}" wx:key="{{item.id}}">
+              <navigator class="products-list-img">
+                <image src="{{item.min}}"></image>
+              </navigator>
+              <view class="products-list-div">
+                <view class="products-list-title">
+                <text class='p'>{{item.name}}</text>
+                </view>
+                <view class="products-list-content">
+                  <text class='p1'>{{item.unit}}ml</text>
+                  <text class='p2'>￥{{item.price}}</text>
+                  <view class="btn-wrap">
+                    <text>-</text>
+                    <text class="products-list-num">0</text>
+                    <text>+</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+    </view>
+  </view>
+</view>
