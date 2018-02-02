@@ -1,66 +1,46 @@
 // pages/login/login.js
+const app = getApp()
+const api = require('../../utils/api.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    //控制显示隐藏
+    picHide: false,
+    phone: ''
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  // 聚焦时的状态
+  picHidefocus () {
+    this.setData({
+      picHide: true
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  // 失焦时的状态
+  picHideBlue() {
+    setTimeout(() => {
+      this.setData({
+        picHide: false
+      })
+    }, 1000)
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  //获取每次输入的input值
+  changeInput (event) {
+    //console.log(event)
+    let phone = event.detail.value
+    this.setData({
+      phone: phone
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  //登录操作
+  login () {
+    let phone = this.data.phone
+    let reg = /^1[34578]\d{9}$/g
+    //验证
+    if (reg.test(phone)) {
+      //验证通过
+      
+    }
   }
 })

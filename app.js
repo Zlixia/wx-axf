@@ -1,6 +1,7 @@
 let api = require('/utils/api.js')
 App({
   onLaunch(){
+    //调用
    this.getCategoriesData()
   },
   globalData:{
