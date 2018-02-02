@@ -1,5 +1,5 @@
 <view>
-  <myHeadCart innerText="{{true}}"></myHeadCart>
+  <myHeadCart innerText="{{true}}" title="购物车"></myHeadCart>
   <view class='main'>
     <!-- 空购物车页面 -->
     <view class="cart-empty-wrap" v-show="(carts.length === 0)">

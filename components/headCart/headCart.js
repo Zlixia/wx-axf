@@ -7,6 +7,10 @@ Component({
     innerText: {
       type: Boolean,
       vaule: 'true',
+    },
+    title:{
+      type: String,
+      value: ""
     }
   },
 

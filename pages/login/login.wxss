@@ -1,0 +1,51 @@
+/* pages/login/login.wxss */
+.main{
+  bottom: 0;
+}
+.pic{
+  height: 160rpx;
+  background-image: url("https://s1.ax1x.com/2018/02/02/9ECam4.png");
+  background-repeat: no-repeat;
+  background-position: 20rpx bottom;
+  background-size: auto 80%;
+  position: relative;
+  overflow: hidden;
+  transition: height .4s;
+}
+.pic-word{
+  position: absolute;
+  top: 45rpx;
+  width: 62%;
+  right: 0;
+  font-size: 26rpx;
+  line-height: 30rpx;
+  color: #000;
+}
+.inputs{
+  background-color: #fff;
+}
+.phone-padding{
+  padding: 0 30rpx;
+}
+.phone{
+  font-size: 28rpx;
+  outline: none;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  border: 0;
+}
+.login-submit{
+  margin: 40rpx 12rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 32rpx;
+  border-radius: 10rpx;
+}
+.pic-hide{
+  height: 0px !important;
+}
+.theme-bg{
+  background-color: #ffd600;
+}
