@@ -5,7 +5,7 @@
         <!-- 主体左边的列表 -->
     <view class="main-left-wrap">
       <view class="main-left-ul">
-        <view class='main-left-li' wx:for="{{categories}}" wx:key="{{item.id}}" bindtap="changeActiveCategory" data-index="{{index}}">
+        <view class='main-left-li' wx:for="{{computedCategories}}" wx:key="{{item.id}}" bindtap="changeActiveCategory" data-index="{{index}}">
           <text class='{{activeCategory===index?"active":""}}'></text>{{item.name}}        </view>
       </view>
     </view>

@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    categories:[],
-    products:[],
+    //分类和商品数据
+    computedCategories:[],
     //激活的大分类,保存的是分类的小标
     activeCategory: 0,
     //激活的标题
@@ -34,20 +34,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      categories: app.globalData.categories,
-      products: app.globalData.products,
-    })
-    this.changeActiveProducts()
+    let computedCategories = app.globalData.computedCategories
+    if (computedCategories.length > 0) {
+      this.setData({
+        computedCategories: computedCategories
+      })
+      this.changeActiveProducts()
+    } else {
+      //调用app里面的getComputedCategories方法
+      app.getComputedCategories(computedCategories => {
+        this.setData({
+          computedCategories: computedCategories
+        })
+        this.changeActiveProducts()
+      })
+    }
   },
   //更改激活的分类
   changeActiveProducts() {
     // 激活的分类下标
     let activeCategory = this.data.activeCategory
     // 所有的商品数据
-    let categories = this.data.categories
+    let computedCategories = this.data.computedCategories
     // 根据激活的分类下标返回激活分类对应商品数据
-    let activeProducts = categories[activeCategory].products
+    let activeProducts = computedCategories[activeCategory].products
     // 根据全部分类的值进行过滤(值为all不过滤)
     // 激活的子分类下标
     let activeCidIndex = this.data.activeCidIndex

@@ -10,7 +10,7 @@
             </swiper>
         </view>
         <!-- 商品展示 -->
-        <view class="commodity-wrap" wx:for="{{categories}}"  wx:key="{{item.id}}"  wx:if="{{index < 4}}">
+        <view class="commodity-wrap" wx:for="{{computedCategories}}"  wx:key="{{item.id}}"  wx:if="{{index < 4}}">
               <!-- 分类名称 -->
               <view class="commodity-name">
                 <text class="name-text" style="color: {{item.color}}">{{item.name}}</text>

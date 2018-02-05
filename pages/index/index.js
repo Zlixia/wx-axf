@@ -2,23 +2,31 @@ var app = getApp()
 let api = require('../../utils/api.js')
 Page({
   data: {
-    categories: [],
+    computedCategories: [],
     bannar: [],
     products:[]
   },
   onLoad(){
-    wx.request({
-      url: api.host + '/bannar',
-      success: res => {
+    let computedCategories = app.globalData.computedCategories
+    if (computedCategories.length > 0) {
+      this.setData({
+        computedCategories: computedCategories
+      })
+    } else {
+      //调用app里面的getComputedCategories方法
+      app.getComputedCategories(computedCategories => {
         this.setData({
-          bannar: res.data
+          computedCategories: computedCategories
         })
-      }
-    })
-    this.setData({
-      categories: app.globalData.categories,
-      products: app.globalData.products,
-    })
+      })
+    }
+    app.fetch(api.host + '/bannar')
+      .then(res => {
+        this.setData({
+          bannar: res
+        })
+      })
+    
   },
 
 })

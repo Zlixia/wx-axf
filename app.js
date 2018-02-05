@@ -1,38 +1,72 @@
 let api = require('/utils/api.js')
 App({
   onLaunch(){
-    //调用
-   this.getCategoriesData()
+    //读取保存在本地的用户信息
+    let userinfo = wx.getStorageSync('userinfo')
+    console.log(userinfo)
   },
   globalData:{
-    categories: [],
+    //保存的是合并后的商品数据
+    computedCategories: [],
     products: [],
+    //购物车中的数据
+    carts:[]
   },
 
-  //获取分类数据
-  getCategoriesData(){
-    wx.request({
-      url: api.host + '/categories',
-      success: res => {
-       this.globalData.categories = res.data
-       this.getProductsData()
-      }
+  //获取分类数据和商品数据
+  getComputedCategories(cb){
+    //加载前
+    wx.showLoading({
+      title: '加载中...',
     })
-  },
-  //获取所有商品的数据
-  getProductsData() {
-    wx.request({
-      url: api.host + '/products',
-      success: res => {
-        this.globalData.products = res.data
-        for (var i = 0; i < this.globalData.categories.length; i++) {
-          for (var j = 0; j < this.globalData.products.length; j++) {
-            if (this.globalData.categories[i].id == this.globalData.products[j].categoryId) {
-              this.globalData.categories[i].products.push(this.globalData.products[j])
+    let categories = []
+    let products = []
+    this.fetch(api.host + '/categories')
+      .then(res => {
+        console.log(res)
+        categories = res
+        return this.fetch(api.host + '/products')
+      })
+      .then(res => {
+        products = res
+        for (let i = 0; i < products.length; i++) {
+          for (let j = 0; j < categories.length; j++) {
+            // 找到商品相对应的分类
+            if (categories[j].id === products[i].categoryId) {
+              categories[j].products.push(products[i])
             }
           }
         }
-      }
-    })
+        this.globalData.computedCategories = categories
+        cb(categories)
+        //加载完后
+        wx.hideLoading()
+      })
   },
+
+  /* 
+   * 封装的请求方法
+   * @param string method 请求的方法
+   * @param object data   请求携带的数据
+   */
+  fetch(url, method = "get", data = {}) {
+    //异步转同步 
+    return new Promise(function (resolve,reject) {
+      wx.request({
+        url: url,
+        method: method,
+        data: data,
+        //加header 是解决后台请求时拿不到数据的问题
+        header: {
+          'content-type': 'application/json'//默认值
+        },
+        success: res => {
+          resolve(res.data)
+        },
+        fail: res => {
+          reject("请求失败")
+        }
+      })
+    })
+  }
 })
